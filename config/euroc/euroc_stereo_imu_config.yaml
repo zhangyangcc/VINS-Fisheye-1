@@ -8,7 +8,7 @@ num_of_cam: 2
 imu_topic: "/imu0"
 image0_topic: "/cam0/image_raw"
 image1_topic: "/cam1/image_raw"
-output_path: "/home/dji/output/"
+output_path: "/home/zy/ros_ws/omni_swarm_ws/output/euroc_dataset_output/"
 
 cam0_calib: "cam0_mei.yaml"
 cam1_calib: "cam1_mei.yaml"
@@ -40,7 +40,7 @@ body_T_cam1: !!opencv-matrix
 
 #Multiple thread support
 multiple_thread: 1
-use_gpu: 1
+use_gpu: 0
 use_gpu_acc_flow: 1
 
 #feature traker paprameters

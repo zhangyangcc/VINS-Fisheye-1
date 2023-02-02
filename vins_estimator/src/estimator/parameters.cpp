@@ -216,12 +216,16 @@ void readParameters(std::string config_file)
         if (ESTIMATE_EXTRINSIC == 0)
             ROS_WARN(" fix extrinsic param ");
 
-        cv::Mat cv_T;
-        fsSettings["body_T_cam0"] >> cv_T;
+
         Eigen::Matrix4d T;
-        cv::cv2eigen(cv_T, T);
+        T << 0.0148655429818, -0.999880929698, 0.00414029679422, -0.0216401454975,
+           0.999557249008, 0.0149672133247, 0.025715529948,  -0.064676986768,
+           -0.0257744366974, 0.00375618835797, 0.999660727178, 0.00981073058949,
+           0, 0, 0, 1;
         RIC[0] = T.block<3, 3>(0, 0);
         TIC[0] = T.block<3, 1>(0, 3);
+        std::cout<<RIC[0]<<std::endl;
+        std::cout<<TIC[0]<<std::endl;
     } 
     
     NUM_OF_CAM = fsSettings["num_of_cam"];
@@ -256,10 +260,12 @@ void readParameters(std::string config_file)
         
         CAM_NAMES[1] = cam1Path;
 
-        cv::Mat cv_T;
-        fsSettings["body_T_cam1"] >> cv_T;
+
         Eigen::Matrix4d T;
-        cv::cv2eigen(cv_T, T);
+        T << 0.0125552670891, -0.999755099723, 0.0182237714554, -0.0198435579556,
+           0.999598781151, 0.0130119051815, 0.0251588363115, 0.0453689425024,
+          -0.0253898008918, 0.0179005838253, 0.999517347078, 0.00786212447038,
+          0, 0, 0, 1;
         RIC[1] = T.block<3, 3>(0, 0);
         TIC[1] = T.block<3, 1>(0, 3);
         fsSettings["publish_rectify"] >> PUB_RECTIFY;
