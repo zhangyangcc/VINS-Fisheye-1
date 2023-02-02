@@ -172,3 +172,6 @@ target_link_libraries(vins_node vins_lib fisheyeNode_lib estimator_lib vins_fron
 add_library(vins_nodelet_lib src/rosNodelet.cpp)
 target_include_directories(vins_nodelet_lib PUBLIC "/home/zy/ros_ws/vins_fisheye_ws/src/backward-cpp")
 target_link_libraries(vins_nodelet_lib vins_lib fisheyeNode_lib estimator_lib vins_frontend stereo_depth vins_factors_lib vins_params_lib OpenMP::OpenMP_CXX)
+
+add_executable(mytest src/mytest.cpp)
+target_link_libraries(mytest ${OpenCV_LIBS} vins_params_lib)
